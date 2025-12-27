@@ -175,6 +175,7 @@ customElements.define("hey-aiva", HeyAiva);
 
 const aiva = document.querySelector('hey-aiva') as HeyAiva | null;
 const vscode = acquireVsCodeApi();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _oldState = vscode.getState() || { colors: [] };
 
 window.addEventListener("message", (event: MessageEvent) => {
