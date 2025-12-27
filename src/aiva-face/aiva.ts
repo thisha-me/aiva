@@ -5,8 +5,18 @@
  * https://github.com/thisha-me/aiva
  */
 
-// @ts-nocheck
-const poses = {
+// Declare VS Code API
+declare function acquireVsCodeApi(): {
+  getState: () => Record<string, unknown>;
+  setState: (state: Record<string, unknown>) => void;
+  postMessage: (message: unknown) => void;
+};
+
+interface Poses {
+  [key: string]: string;
+}
+
+const poses: Poses = {
   default: "circle half-up circle",
   happy: "half-down half-up half-down",
   disappointed: "half-up bar-bottom half-up",
@@ -16,7 +26,8 @@ const poses = {
   cry: "half-down square half-down",
   wink: "circle half-up bar",
 };
-const eyes = [
+
+const eyes: string[] = [
   "circle",
   "half-down",
   "circle-small",
@@ -24,7 +35,8 @@ const eyes = [
   "square",
   "circle-stroke",
 ];
-const mouths = [
+
+const mouths: string[] = [
   "circle-small",
   "square",
   "square-small",
@@ -32,10 +44,14 @@ const mouths = [
   "circle-small",
   "square-small",
 ];
-const randBetween = (from, to) => from + Math.floor(Math.random() * to);
-const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
+
+const randBetween = (from: number, to: number): number => from + Math.floor(Math.random() * to);
+const lerp = (start: number, end: number, amt: number): number => (1 - amt) * start + amt * end;
 
 class HeyAiva extends HTMLElement {
+  private _rect!: DOMRect;
+  private _handle?: ReturnType<typeof setTimeout>;
+
   constructor() {
     super();
     this.onPointerMove = this.onPointerMove.bind(this);
@@ -43,31 +59,17 @@ class HeyAiva extends HTMLElement {
     this.onResize();
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     window.addEventListener("resize", this.onResize);
     window.addEventListener("pointermove", this.onPointerMove);
-    // this.addEventListener("click", this.onClick);
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("pointermove", this.onPointerMove);
-    // this.removeEventListener("click", this.onClick);
   }
 
-  // onClick() {
-  //   const p = Object.keys(poses);
-  //   const pose = this.getAttribute("pose") ?? "default";
-  //   let index = p.indexOf(pose);
-  //   if (index === p.length - 1) {
-  //     index = 0;
-  //   } else {
-  //     index++;
-  //   }
-  //   this.setAttribute("pose", p[index]);
-  // }
-
-  onPointerMove(event) {
+  onPointerMove(event: PointerEvent): void {
     const x = (event.clientX - this._rect.x) / this._rect.width - 0.5;
     const y = (event.clientY - this._rect.y) / this._rect.height - 0.5;
     const deltaX = 0 - x;
@@ -78,31 +80,30 @@ class HeyAiva extends HTMLElement {
 
     this.style.setProperty("--x", `${x.toPrecision(2)}`);
     this.style.setProperty("--y", `${y.toPrecision(2)}`);
-
     this.style.setProperty("--deg", `${lerp(0, -35, Math.abs(deg / 180))}deg`);
   }
 
-  onResize() {
+  onResize(): void {
     this._rect = document.documentElement.getBoundingClientRect();
   }
 
-  static get observedAttributes() {
+  static get observedAttributes(): string[] {
     return ["shapes", "pose"];
   }
 
-  get eye0() {
+  get eye0(): HTMLElement | null {
     return this.querySelector(".eye:first-child");
   }
 
-  get mouth() {
+  get mouth(): HTMLElement | null {
     return this.querySelector(".mouth");
   }
 
-  get eye1() {
+  get eye1(): HTMLElement | null {
     return this.querySelector(".eye:last-child");
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, _oldValue: string, newValue: string): void {
     if (name === "shapes") {
       this.updateShapes(newValue);
     }
@@ -112,21 +113,21 @@ class HeyAiva extends HTMLElement {
     }
   }
 
-  reset() {
+  reset(): void {
     if (this._handle) {
       clearTimeout(this._handle);
     }
     this.updateShapes(poses[this.getAttribute("pose") ?? "default"]);
   }
 
-  updateShapes(value) {
+  updateShapes(value: string): void {
     const [eye0, mouth, eye1] = value.split(" ");
-    this.eye0.dataset.shape = eye0;
-    this.mouth.dataset.shape = mouth;
-    this.eye1.dataset.shape = eye1;
+    if (this.eye0) this.eye0.dataset.shape = eye0;
+    if (this.mouth) this.mouth.dataset.shape = mouth;
+    if (this.eye1) this.eye1.dataset.shape = eye1;
   }
 
-  emote(name) {
+  emote(name: string): void {
     const shapes = poses[name] ?? poses.default;
     this.updateShapes(shapes);
     this._handle = setTimeout(() => {
@@ -134,22 +135,22 @@ class HeyAiva extends HTMLElement {
     }, randBetween(1000, 1750));
   }
 
-  talk() {
+  talk(): { stop: () => void } {
     const shapes = poses.default;
     this.updateShapes(shapes);
 
     let i = 0;
     let pace = randBetween(3, 5);
-    const loop = () => {
+    const loop = (): void => {
       i++;
       if (i === pace) {
         const eye = eyes[randBetween(0, eyes.length - 1)];
-        this.eye0.dataset.shape = eye;
-        this.eye1.dataset.shape = eye;
+        if (this.eye0) this.eye0.dataset.shape = eye;
+        if (this.eye1) this.eye1.dataset.shape = eye;
         pace = randBetween(3, 5);
         i = 0;
       }
-      this.mouth.dataset.shape = mouths[randBetween(0, mouths.length - 1)];
+      if (this.mouth) this.mouth.dataset.shape = mouths[randBetween(0, mouths.length - 1)];
       this._handle = setTimeout(() => loop(), randBetween(100, 300));
     };
 
@@ -160,7 +161,7 @@ class HeyAiva extends HTMLElement {
     };
   }
 
-  think() {
+  think(): { stop: () => void } {
     this.classList.add("loading");
     return {
       stop: () => {
@@ -172,16 +173,15 @@ class HeyAiva extends HTMLElement {
 
 customElements.define("hey-aiva", HeyAiva);
 
-
-const aiva = document.querySelector('hey-aiva');
+const aiva = document.querySelector('hey-aiva') as HeyAiva | null;
 const vscode = acquireVsCodeApi();
-const oldState = vscode.getState() || { colors: [] };
+const _oldState = vscode.getState() || { colors: [] };
 
-window.addEventListener("message", (event) => {
+window.addEventListener("message", (event: MessageEvent) => {
   const message = event.data;
   switch (message.type) {
     case "pose": {
-      aiva.setAttribute('pose', message.pose);
+      aiva?.setAttribute('pose', message.pose);
       break;
     }
   }
