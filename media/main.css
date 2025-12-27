@@ -1,0 +1,229 @@
+body {
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+hey-houston {
+  --scale: 2;
+  --size: min(
+    85vh,
+    calc(clamp(4rem, calc(3.75rem + 12.5vmin), 13.75rem) * var(--scale))
+  );
+  --border-width: calc(
+    clamp(0.31rem, calc(0.21rem + 0.52vmin), 0.63rem) * var(--scale)
+  );
+  --border-color: conic-gradient(
+    from var(--deg, 0deg) at 50% 50%,
+    #3245ff 0deg,
+    #bc52ee 102deg,
+    #4af2c8 150deg,
+    #4af2c8 200deg,
+    #3245ff 360deg
+  );
+  --body-color: radial-gradient(
+    80% 80% at 50% 37.5%,
+    #191c24 33%,
+    #111218 67%,
+    #040506 100%
+  );
+  color: white;
+  position: relative;
+  aspect-ratio: 128 / 96;
+  width: var(--size);
+  margin-top: calc(var(--border-width) * 0.75);
+  --border-squircle: ellipse(50% 50% at 50% 50%);
+  --border-squircle-inner: ellipse(50% 50% at 50% 50%);
+}
+.theme-mono {
+  --border-color: white;
+  --body-color: #17191e;
+}
+hey-houston::before,
+.glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 128 / 96;
+  width: var(--size);
+  background: var(--border-color);
+  clip-path: var(--border-squircle);
+  animation: floating 6s 0.3s ease-in-out infinite;
+}
+.glow::after {
+  filter: blur(35px);
+  border-radius: 50%;
+  clip-path: none;
+  z-index: -1;
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 128 / 96;
+  width: var(--size);
+  background: var(--border-color);
+  clip-path: var(--border-squircle);
+  animation: floating 4s ease-in-out infinite;
+}
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes fade {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+hey-houston * {
+  box-sizing: border-box;
+}
+hey-houston[theme="simple"] {
+  background: black;
+}
+hey-houston[theme="simple"] .body {
+  background: none;
+}
+.body {
+  display: flex;
+  aspect-ratio: 132 / 96;
+  width: calc(100% - calc(var(--border-width) * 2));
+  background: var(--body-color);
+  clip-path: var(--border-squircle-inner);
+}
+.face {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  aspect-ratio: 102 / 34;
+  height: 40%;
+  margin: auto auto 16%;
+  transform: translate(0, 0);
+  transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+html:hover .face {
+  transform: translate(calc(var(--x) * 5%), calc(var(--y) * 25%));
+}
+.loading .face {
+  --delay: 175ms;
+  transform: translate(0, -25%);
+}
+.loading :is(.eye, .mouth) {
+  all: initial;
+  aspect-ratio: 1;
+  background: white;
+  margin: 17.5% auto;
+  width: calc(var(--border-width) * 2);
+  border-radius: calc(var(--border-width) / 4);
+  animation: floating 1s cubic-bezier(0.76, 0, 0.24, 1) infinite,
+    fade 1s ease-in-out infinite;
+}
+.loading :is(.eye:first-child) {
+  animation-delay: 0;
+}
+.loading :is(.mouth) {
+  animation-delay: calc(var(--delay) * 1);
+}
+.loading :is(.eye:last-child) {
+  animation-delay: calc(var(--delay) * 2);
+}
+.eye,
+.mouth {
+  position: relative;
+  aspect-ratio: 1;
+  background: currentColor;
+  margin: 17.5%;
+}
+[data-shape^="circle"] {
+  border-radius: 50%;
+}
+[data-shape="heart"] {
+  background: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='27' height='24' viewBox='0 0 27 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26.3955 7.60322C26.3955 3.7173 23.246 0.568848 19.3611 0.568848C17.0029 0.568848 14.9219 1.73245 13.6455 3.51147C12.3692 1.73245 10.2871 0.568848 7.92988 0.568848C4.045 0.568848 0.895508 3.7173 0.895508 7.60322C0.895508 8.15244 0.964807 8.68822 1.08479 9.20124C2.06221 15.2696 8.80905 21.674 13.6455 23.4313C18.4809 21.674 25.2298 15.2696 26.2042 9.20331C26.3252 8.68822 26.3955 8.15244 26.3955 7.60322Z' fill='white'/%3E%3C/svg%3E%0A");
+  background-size: 100% 100%;
+  transform: scale(1.25);
+}
+[data-shape^="circle-stroke"] {
+  background: none;
+  border: calc(var(--border-width) * 0.67) solid currentColor;
+}
+[data-shape^="bar"] {
+  aspect-ratio: 80 / 24;
+  border-radius: calc(var(--border-width) / 2);
+}
+[data-shape^="square"] {
+  border-radius: calc(var(--border-width) / 2);
+  transform: scale(0.9);
+}
+[data-shape$="small"] {
+  transform: scale(0.55);
+}
+[data-shape^="half"] {
+  aspect-ratio: 2 / 1;
+  background: none;
+  border: calc(var(--border-width) * 0.67) solid currentColor;
+}
+[data-shape^="half-up"] {
+  border-bottom-left-radius: 999px;
+  border-bottom-right-radius: 999px;
+  border-top: 0;
+  align-self: flex-end;
+}
+[data-shape^="half-down"] {
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
+  border-bottom: 0;
+  align-self: flex-start;
+}
+[data-shape$="top"] {
+  align-self: flex-start;
+}
+[data-shape$="bottom"] {
+  align-self: flex-end;
+}
+[pose="cry"] .eye {
+  z-index: 1;
+  border: 0;
+  background: linear-gradient(to bottom, #3245ff, #4af2c8);
+}
+[pose="cry"] .eye::before {
+  content: "";
+  display: block;
+  position: relative;
+  width: calc(100% - var(--border-width));
+  height: calc(var(--border-width) * 8);
+  margin: 0 auto;
+}
+[pose="cry"] .eye::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: calc(var(--border-width) * 2);
+  margin: 0 auto;
+  border: calc(var(--border-width) * 0.67) solid currentColor;
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
+  border-bottom: 0;
+}
+[pose="cry"] .mouth {
+  align-self: flex-start;
+}

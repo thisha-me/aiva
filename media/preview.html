@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houston Preview</title>
+    <link href="reset.css" rel="stylesheet">
+    <link href="vscode.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script>
+        // Mock VS Code API
+        window.acquireVsCodeApi = () => ({
+            getState: () => ({}),
+            setState: () => { },
+            postMessage: (msg) => console.log('Message to extension:', msg)
+        });
+    </script>
+    <style>
+        body {
+            background-color: #1e1e1e;
+        }
+
+        /* VS Code Dark bg */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: sans-serif;
+        }
+
+        button:hover {
+            background: #005f9e;
+        }
+    </style>
+</head>
+
+<body>
+    <hey-houston class="glow">
+        <div class="container">
+            <div class="body">
+                <div class="face">
+                    <div class="eye" data-shape="circle"></div>
+                    <div class="mouth" data-shape="half-up"></div>
+                    <div class="eye" data-shape="circle"></div>
+                </div>
+            </div>
+        </div>
+    </hey-houston>
+
+    <script type="module" src="main.js"></script>
+
+    <div class="controls">
+        <button onclick="setPose('happy')">Happy</button>
+        <button onclick="setPose('sad')">Sad</button>
+        <button onclick="setPose('shocked')">Shocked</button>
+        <button onclick="setPose('cry')">Cry</button>
+    </div>
+
+    <script>
+        function setPose(pose) {
+            const houston = document.querySelector('hey-houston');
+            houston.setAttribute('pose', pose);
+        }
+    </script>
+</body>
+
+</html>
