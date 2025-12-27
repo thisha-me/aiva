@@ -26,9 +26,6 @@
   "author": "",
   "license": "MIT",
   "type": "commonjs",
-  "activationEvents": [
-    "onView:aiva.hello"
-  ],
   "contributes": {
     "themes": [
       {
