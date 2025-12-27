@@ -1,5 +1,5 @@
 {
-  "name": "coolwave",
+  "name": "sutikka",
   "displayName": "Cool Night",
   "version": "1.0.0",
   "description": "",
@@ -32,8 +32,8 @@
       "explorer": [
         {
           "type": "webview",
-          "id": "sutikka.hello",
-          "name": "Sutikka"
+          "id": "houston.hello",
+          "name": "Houston"
         }
       ]
     }
