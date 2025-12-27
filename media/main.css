@@ -8,7 +8,7 @@ body {
   justify-content: center;
 }
 
-hey-sutikka {
+hey-aiva {
   --scale: 2;
   --size: min(
     85vh,
@@ -19,17 +19,17 @@ hey-sutikka {
   );
   --border-color: conic-gradient(
     from var(--deg, 0deg) at 50% 50%,
-    #3245ff 0deg,
-    #bc52ee 102deg,
-    #4af2c8 150deg,
-    #4af2c8 200deg,
-    #3245ff 360deg
+    #00b4fb 0deg,
+    #c276ff 90deg,
+    #ff5f70 180deg,
+    #ffd164 270deg,
+    #00b4fb 360deg
   );
   --body-color: radial-gradient(
     80% 80% at 50% 37.5%,
-    #191c24 33%,
-    #111218 67%,
-    #040506 100%
+    #1e2232 33%,
+    #181b28 67%,
+    #0d0f16 100%
   );
   color: white;
   position: relative;
@@ -41,9 +41,9 @@ hey-sutikka {
 }
 .theme-mono {
   --border-color: white;
-  --body-color: #17191e;
+  --body-color: #181b28;
 }
-hey-sutikka::before,
+hey-aiva::before,
 .glow::after {
   content: "";
   position: absolute;
@@ -92,13 +92,13 @@ hey-sutikka::before,
     opacity: 0.4;
   }
 }
-hey-sutikka * {
+hey-aiva * {
   box-sizing: border-box;
 }
-hey-sutikka[theme="simple"] {
+hey-aiva[theme="simple"] {
   background: black;
 }
-hey-sutikka[theme="simple"] .body {
+hey-aiva[theme="simple"] .body {
   background: none;
 }
 .body {
@@ -201,7 +201,7 @@ html:hover .face {
 [pose="cry"] .eye {
   z-index: 1;
   border: 0;
-  background: linear-gradient(to bottom, #3245ff, #4af2c8);
+  background: linear-gradient(to bottom, #00b4fb, #62e9ff);
 }
 [pose="cry"] .eye::before {
   content: "";

@@ -1,8 +1,12 @@
 {
-  "name": "sutikka",
-  "displayName": "Cool Night",
+  "name": "aiva",
+  "displayName": "Aiva",
   "version": "1.0.0",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thisha-me/aiva"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -18,22 +22,22 @@
   "license": "ISC",
   "type": "commonjs",
   "activationEvents": [
-    "onView:sutikka.hello"
+    "onView:aiva.hello"
   ],
   "contributes": {
     "themes": [
       {
-        "label": "Cool Night",
+        "label": "Aiva",
         "uiTheme": "vs-dark",
-        "path": "./themes/cool-wave.json"
+        "path": "./themes/aiva.json"
       }
     ],
     "views": {
       "explorer": [
         {
           "type": "webview",
-          "id": "houston.hello",
-          "name": "Houston"
+          "id": "aiva.hello",
+          "name": "Aiva"
         }
       ]
     }

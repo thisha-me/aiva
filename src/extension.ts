@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-	const provider = new SutikkaViewProvider(context.extensionUri);
+	const provider = new AivaViewProvider(context.extensionUri);
 
 	context.subscriptions.push(
 		vscode.window.registerWebviewViewProvider(
-			SutikkaViewProvider.viewType,
+			AivaViewProvider.viewType,
 			provider
 		)
 	);
@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 }
 
-function updateDiagnostics(provider: SutikkaViewProvider): void {
+function updateDiagnostics(provider: AivaViewProvider): void {
 	const diagnostics = vscode.languages.getDiagnostics();
 	let problems = 0;
 	for (const [doc, collection] of diagnostics) {
@@ -50,8 +50,8 @@ function updateDiagnostics(provider: SutikkaViewProvider): void {
 	}
 }
 
-class SutikkaViewProvider implements vscode.WebviewViewProvider {
-	public static readonly viewType = "sutikka.hello";
+class AivaViewProvider implements vscode.WebviewViewProvider {
+	public static readonly viewType = "aiva.hello";
 
 	public pose: string = "default";
 	private _view?: vscode.WebviewView;
@@ -130,10 +130,10 @@ class SutikkaViewProvider implements vscode.WebviewViewProvider {
 				<link href="${styleVSCodeUri}" rel="stylesheet">
 				<link href="${styleMainUri}" rel="stylesheet">
 
-				<title>Sutikka</title>
+				<title>Aiva</title>
 			</head>
 			<body>
-				<hey-sutikka class="glow">
+				<hey-aiva class="glow">
 					<div class="container">
 						<div class="body">
 						<div class="face">
@@ -143,7 +143,7 @@ class SutikkaViewProvider implements vscode.WebviewViewProvider {
 						</div>
 						</div>
 					</div>
-				</hey-sutikka>
+				</hey-aiva>
 				<script type="module" nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 		</html>`;
