@@ -5,6 +5,9 @@ node_modules/
 out/
 dist/
 
+# VS Code test download
+.vscode-test/
+
 # OS generated files
 .DS_Store
 Thumbs.db
