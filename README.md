@@ -21,7 +21,7 @@ A beautiful dark theme with vibrant colors and **Aiva** - your friendly coding c
 3. Click **Install** to install it.
 4. Click **Reload** to reload your editor.
 5. Code/File ＞ Preferences ＞ Color Theme ＞ **Aiva**.
-6. 🌟 Enjoy and [Rate five-stars](https://marketplace.visualstudio.com/items?itemName=YOUR_PUBLISHER.aiva&ssr=false#review-details).
+6. 🌟 Enjoy and [Rate five-stars](https://marketplace.visualstudio.com/items?itemName=sam-thisha.aiva).
 
 ## License
 
