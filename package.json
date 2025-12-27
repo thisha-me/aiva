@@ -18,7 +18,7 @@
   "license": "ISC",
   "type": "commonjs",
   "activationEvents": [
-    "onView:houston.hello"
+    "onView:sutikka.hello"
   ],
   "contributes": {
     "themes": [
@@ -32,8 +32,8 @@
       "explorer": [
         {
           "type": "webview",
-          "id": "houston.hello",
-          "name": "Houston"
+          "id": "sutikka.hello",
+          "name": "Sutikka"
         }
       ]
     }

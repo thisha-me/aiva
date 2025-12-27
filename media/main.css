@@ -8,7 +8,7 @@ body {
   justify-content: center;
 }
 
-hey-houston {
+hey-sutikka {
   --scale: 2;
   --size: min(
     85vh,
@@ -43,7 +43,7 @@ hey-houston {
   --border-color: white;
   --body-color: #17191e;
 }
-hey-houston::before,
+hey-sutikka::before,
 .glow::after {
   content: "";
   position: absolute;
@@ -92,13 +92,13 @@ hey-houston::before,
     opacity: 0.4;
   }
 }
-hey-houston * {
+hey-sutikka * {
   box-sizing: border-box;
 }
-hey-houston[theme="simple"] {
+hey-sutikka[theme="simple"] {
   background: black;
 }
-hey-houston[theme="simple"] .body {
+hey-sutikka[theme="simple"] .body {
   background: none;
 }
 .body {

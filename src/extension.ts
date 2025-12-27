@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-	const provider = new HoustonViewProvider(context.extensionUri);
+	const provider = new SutikkaViewProvider(context.extensionUri);
 
 	context.subscriptions.push(
 		vscode.window.registerWebviewViewProvider(
-			HoustonViewProvider.viewType,
+			SutikkaViewProvider.viewType,
 			provider
 		)
 	);
@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 }
 
-function updateDiagnostics(provider: HoustonViewProvider): void {
+function updateDiagnostics(provider: SutikkaViewProvider): void {
 	const diagnostics = vscode.languages.getDiagnostics();
 	let problems = 0;
 	for (const [doc, collection] of diagnostics) {
@@ -50,8 +50,8 @@ function updateDiagnostics(provider: HoustonViewProvider): void {
 	}
 }
 
-class HoustonViewProvider implements vscode.WebviewViewProvider {
-	public static readonly viewType = "houston.hello";
+class SutikkaViewProvider implements vscode.WebviewViewProvider {
+	public static readonly viewType = "sutikka.hello";
 
 	public pose: string = "default";
 	private _view?: vscode.WebviewView;
@@ -130,10 +130,10 @@ class HoustonViewProvider implements vscode.WebviewViewProvider {
 				<link href="${styleVSCodeUri}" rel="stylesheet">
 				<link href="${styleMainUri}" rel="stylesheet">
 
-				<title>Houston</title>
+				<title>Sutikka</title>
 			</head>
 			<body>
-				<hey-houston class="glow">
+				<hey-sutikka class="glow">
 					<div class="container">
 						<div class="body">
 						<div class="face">
@@ -143,7 +143,7 @@ class HoustonViewProvider implements vscode.WebviewViewProvider {
 						</div>
 						</div>
 					</div>
-				</hey-houston>
+				</hey-sutikka>
 				<script type="module" nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 		</html>`;

@@ -28,7 +28,7 @@ const mouths = [
 const randBetween = (from, to) => from + Math.floor(Math.random() * to);
 const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
-class HeyHouston extends HTMLElement {
+class HeySutikka extends HTMLElement {
   constructor() {
     super();
     this.onPointerMove = this.onPointerMove.bind(this);
@@ -163,10 +163,10 @@ class HeyHouston extends HTMLElement {
   }
 }
 
-customElements.define("hey-houston", HeyHouston);
+customElements.define("hey-sutikka", HeySutikka);
 
 
-const houston = document.querySelector('hey-houston');
+const sutikka = document.querySelector('hey-sutikka');
 const vscode = acquireVsCodeApi();
 const oldState = vscode.getState() || { colors: [] };
 
@@ -174,7 +174,7 @@ window.addEventListener("message", (event) => {
   const message = event.data;
   switch (message.type) {
     case "pose": {
-      houston.setAttribute('pose', message.pose);
+      sutikka.setAttribute('pose', message.pose);
       break;
     }
   }
