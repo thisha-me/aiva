@@ -21,6 +21,13 @@
     "onView:houston.hello"
   ],
   "contributes": {
+    "themes": [
+      {
+        "label": "Cool Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cool-wave.json"
+      }
+    ],
     "views": {
       "explorer": [
         {
