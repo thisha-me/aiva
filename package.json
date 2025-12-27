@@ -1,8 +1,10 @@
 {
   "name": "aiva",
   "displayName": "Aiva",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
+  "publisher": "sam-thisha",
+  "icon": "assets/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/thisha-me/aiva"
@@ -36,9 +38,12 @@
     "views": {
       "explorer": [
         {
+          "icon": "assets/icon.png",
           "type": "webview",
           "id": "aiva.hello",
-          "name": "Aiva"
+          "name": "Aiva",
+          "contextualTitle": "Explorer",
+          "visibility": "visible"
         }
       ]
     }
