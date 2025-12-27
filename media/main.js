@@ -1,3 +1,10 @@
+/**
+ * Aiva - VS Code Theme Extension
+ * Copyright (c) 2025 thisha-me
+ * Licensed under the MIT License
+ * https://github.com/thisha-me/aiva
+ */
+
 // @ts-nocheck
 const poses = {
   default: "circle half-up circle",

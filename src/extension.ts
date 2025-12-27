@@ -1,3 +1,10 @@
+/**
+ * Aiva - VS Code Theme Extension
+ * Copyright (c) 2025 thisha-me
+ * Licensed under the MIT License
+ * https://github.com/thisha-me/aiva
+ */
+
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
