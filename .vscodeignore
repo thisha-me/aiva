@@ -1,18 +1,20 @@
 # Source files (compiled to out/)
 src/**
 tsconfig.json
+eslint.config.mjs
 
 # Development files
 .vscode/**
 .git/**
 .gitignore
+.github/**
 
 # Node modules (dependencies bundled in extension)
 node_modules/**
 package-lock.json
 
-# Preview/test files
-media/preview.html
+# Preview/test file
+out/aiva-face/preview.html
 
 # Other
 *.zip
