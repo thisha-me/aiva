@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 function updateDiagnostics(provider: AivaViewProvider): void {
 	const diagnostics = vscode.languages.getDiagnostics();
 	let problems = 0;
-	for (const [doc, collection] of diagnostics) {
+	for (const [_doc, collection] of diagnostics) {
 		for (const c of collection) {
 			if (c.severity === 0 || c.severity === 1) {
 				problems++;
@@ -67,7 +67,7 @@ class AivaViewProvider implements vscode.WebviewViewProvider {
 
 	public resolveWebviewView(
 		webviewView: vscode.WebviewView,
-		context: vscode.WebviewViewResolveContext,
+		_context: vscode.WebviewViewResolveContext,
 		_token: vscode.CancellationToken
 	) {
 		this._view = webviewView;
