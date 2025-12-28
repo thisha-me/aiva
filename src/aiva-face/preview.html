@@ -13,7 +13,7 @@
     <title>Aiva Preview</title>
     <link href="reset.css" rel="stylesheet">
     <link href="vscode.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
+    <link href="aiva.css" rel="stylesheet">
     <script>
         // Mock VS Code API
         window.acquireVsCodeApi = () => ({
@@ -70,19 +70,30 @@
         </div>
     </hey-aiva>
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="aiva.js"></script>
 
     <div class="controls">
         <button onclick="setPose('happy')">Happy</button>
         <button onclick="setPose('sad')">Sad</button>
         <button onclick="setPose('shocked')">Shocked</button>
         <button onclick="setPose('cry')">Cry</button>
+        <span style="margin: 0 10px; color: #666;">|</span>
+        <button onclick="setTheme('neon')">Neon</button>
+        <button onclick="setTheme('mint')">Mint</button>
     </div>
 
     <script>
         function setPose(pose) {
             const aiva = document.querySelector('hey-aiva');
             aiva.setAttribute('pose', pose);
+        }
+
+        function setTheme(theme) {
+            const aiva = document.querySelector('hey-aiva');
+            aiva.classList.remove('theme-mint', 'theme-neon');
+            if (theme === 'mint') {
+                aiva.classList.add('theme-mint');
+            }
         }
     </script>
 </body>

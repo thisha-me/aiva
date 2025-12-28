@@ -175,7 +175,7 @@ customElements.define("hey-aiva", HeyAiva);
 
 const aiva = document.querySelector('hey-aiva') as HeyAiva | null;
 const vscode = acquireVsCodeApi();
- 
+
 const _oldState = vscode.getState() || { colors: [] };
 
 window.addEventListener("message", (event: MessageEvent) => {
@@ -183,6 +183,17 @@ window.addEventListener("message", (event: MessageEvent) => {
   switch (message.type) {
     case "pose": {
       aiva?.setAttribute('pose', message.pose);
+      break;
+    }
+    case "theme": {
+      if (aiva) {
+        // Remove existing theme classes and add new one
+        aiva.classList.remove('theme-mint', 'theme-neon');
+        if (message.theme === 'mint') {
+          aiva.classList.add('theme-mint');
+        }
+        // 'neon' is the default, no class needed
+      }
       break;
     }
   }

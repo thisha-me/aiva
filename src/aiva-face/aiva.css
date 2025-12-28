@@ -50,6 +50,29 @@ hey-aiva {
   --border-color: white;
   --body-color: #181b28;
 }
+
+/* Aiva Mint Theme */
+.theme-mint {
+  --border-color: conic-gradient(
+    from var(--deg, 0deg) at 50% 50%,
+    #3245ff 0deg,
+    #bc52ee 102deg,
+    #4af2c8 150deg,
+    #4af2c8 200deg,
+    #3245ff 360deg
+  );
+  --body-color: radial-gradient(
+    80% 80% at 50% 37.5%,
+    #191c24 33%,
+    #111218 67%,
+    #040506 100%
+  );
+}
+
+.theme-mint [pose="cry"] .eye {
+  background: linear-gradient(to bottom, #3245ff, #4af2c8);
+}
+
 hey-aiva::before,
 .glow::after {
   content: "";

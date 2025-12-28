@@ -1,8 +1,8 @@
 {
   "name": "aiva",
   "displayName": "Aiva",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.6",
+  "description": "A beautiful dark theme with Aiva - your friendly coding companion that reacts to your code errors!",
   "publisher": "sam-thisha",
   "icon": "assets/logo.png",
   "repository": {
@@ -29,9 +29,14 @@
   "contributes": {
     "themes": [
       {
-        "label": "Aiva",
+        "label": "Aiva Neon",
         "uiTheme": "vs-dark",
-        "path": "./themes/aiva.json"
+        "path": "./themes/aiva-neon.json"
+      },
+      {
+        "label": "Aiva Mint",
+        "uiTheme": "vs-dark",
+        "path": "./themes/aiva-mint.json"
       }
     ],
     "views": {

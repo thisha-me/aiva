@@ -1,6 +1,6 @@
 <h1><img src="assets/logo.png" alt="Aiva Logo" width="48" style="vertical-align: middle;"> Aiva Theme for VS Code</h1>
 
-<img src="assets/screen-shot.jpg" alt="screen shot" style="width:100%;"><br>
+<img src="assets/slideshow.gif" alt="Aiva Theme Slideshow" style="width:100%;"><br>
 
 A beautiful dark theme with vibrant colors and **Aiva** - your friendly coding companion that reacts to your code errors!
 

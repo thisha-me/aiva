@@ -81,21 +81,32 @@ class AivaViewProvider implements vscode.WebviewViewProvider {
 
 		webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-		// webviewView.webview.onDidReceiveMessage(data => {
-		// 	switch (data.type) {
-		// 		case 'colorSelected':
-		// 			{
-		// 				vscode.window.activeTextEditor?.insertSnippet(new vscode.SnippetString(`#${data.value}`));
-		// 				break;
-		// 			}
-		// 	}
-		// });
+		// Send initial theme
+		this.updateTheme();
+
+		// Listen for theme changes
+		vscode.workspace.onDidChangeConfiguration((e) => {
+			if (e.affectsConfiguration('workbench.colorTheme')) {
+				this.updateTheme();
+			}
+		});
 	}
 
 	public setPose(pose: string) {
 		if (this._view) {
 			this._view.webview.postMessage({ type: "pose", pose });
 			this.pose = pose;
+		}
+	}
+
+	private updateTheme() {
+		if (this._view) {
+			const currentTheme = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
+			let themeClass = 'neon'; // default
+			if (currentTheme.toLowerCase().includes('mint')) {
+				themeClass = 'mint';
+			}
+			this._view.webview.postMessage({ type: "theme", theme: themeClass });
 		}
 	}
 
