@@ -54,13 +54,11 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.90.0",
+    "@vscode/test-electron": "^2.5.2",
     "eslint": "^9.0.0",
     "glob": "^13.0.0",
     "mocha": "^11.7.5",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.0.0"
-  },
-  "dependencies": {
-    "@vscode/test-electron": "^2.5.2"
   }
 }
